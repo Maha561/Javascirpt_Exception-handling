@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>
+        Number Input Validation
+    </h2>
+
+    <p>
+        Enter a number between 5 and 10 : 
+    </p>
+
+    <input type="text" id="numInput">
+
+    <br>
+    <br>
+
+
+    <button onclick="validateNumber()">Check Number</button>
+
+    <p id="result"></p>
+
+
+    <script>
+function validateNumber() {
+    var msg = document.getElementById("result"); // Where we show messages
+    var x = document.getElementById("numInput").value; // User input
+    msg.innerHTML = ""; // Clear previous message
+
+    try {
+        // Check if input is empty
+        if (x === "") throw "Input is empty";
+
+        // Check if input is not a number
+        if (isNaN(x)) throw "Input is not a number";
+
+        x = Number(x); // Convert input to number
+
+        // Check if number is in range
+        if (x < 5) throw "Number is too low";
+        if (x > 10) throw "Number is too high";
+
+        // If all checks pass
+        msg.innerHTML = "✅ Valid number: " + x;
+    }
+    catch(err) {
+        // Handle any errors
+        msg.innerHTML = "❌ Error: " + err;
+    }
+    finally {
+        // Always clear the input field
+        document.getElementById("numInput").value = "";
+    }
+}
+
+
+
+
+
+</script>
+</body>
+</html>
